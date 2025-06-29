@@ -1,96 +1,82 @@
-// import { useEffect, useState } from "react";
-// import axios from "axios"
-
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../context/AppContextProvider";
+import { Link } from "react-router-dom";
 import HeaderAssistant from "../_components/HeaderAssistant";
-import Loader from "../_components/Loader";
 
-const Projects = ({projects}) => {
-  // const [projects, setProjects] = useState([]);
+const Projects = () => {
+  const { BACKEND_URL } = useAppContext();
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Simulate fetching data (replace this later with actual API call)
-  // useEffect(() => {
-  //   // const dummyProjects = [
-  //   //   {
-  //   //     _id: "1",
-  //   //     title: "AI Portfolio Site",
-  //   //     image: "https://via.placeholder.com/600x400",
-  //   //     technologies: "React, Tailwind, Node.js",
-  //   //     link: "https://example.com/project1",
-  //   //   },
-  //   //   {
-  //   //     _id: "2",
-  //   //     title: "E-Commerce Backend",
-  //   //     image: "https://via.placeholder.com/600x400",
-  //   //     technologies: "Express, MongoDB, Stripe",
-  //   //     link: "https://example.com/project2",
-  //   //   },
-  //   //   {
-  //   //     _id: "3",
-  //   //     title: "Mobile Chat App",
-  //   //     image: "https://via.placeholder.com/600x400",
-  //   //     technologies: "React Native, Firebase",
-  //   //     link: "https://example.com/project3",
-  //   //   },
-  //   // ];
-  //   // setProjects(dummyProjects);
+  useEffect(() => {
+    axios
+      .get(`${BACKEND_URL}/project/get-all-project`)
+      .then((res) => {
+        setProjects(res.data.projects);
+      })
+      .catch((err) => console.error("Failed to fetch projects:", err))
+      .finally(() => setLoading(false));
+  }, [BACKEND_URL]);
 
-  //   axios
-  //     .get("http://localhost:3000/api/project/get-all-project")
-  //     .then((res) => setProjects(res.data))
-  //     .catch((err) => console.error(err));
-  // }, []);
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-60">
+        <p className="text-gray-500 text-lg">Loading projects...</p>
+      </div>
+    );
+  }
 
   return (
     <>
       <HeaderAssistant />
-      <div>
-        {/* Header Section */}
-        <div
-          className="relative h-60 md:h-80 bg-cover bg-center flex items-center justify-center text-white"
-          style={{
-            backgroundImage: `url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1350&q=80")`,
-          }}
-        >
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black to-main opacity-60"></div>
-          <h1 className="text-4xl md:text-5xl font-bold z-10">Projects</h1>
-        </div>
 
-        {/* Projects Grid */}
-        <div className="p-6 md:p-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {!projects ? (
-            <Loader />
-          ) : (
-            projects.map((project) => (
-              <div
-                key={project._id}
-                className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all"
-              >
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="h-48 w-full object-cover"
-                />
-                <div className="p-4">
-                  <h2 className="text-xl font-semibold mb-2">
-                    {project.title}
-                  </h2>
-                  <p className="text-sm text-gray-600 mb-4">
-                    {project.technologies}
-                  </p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-main text-white rounded hover:bg-purple-800"
-                  >
-                    View Project
-                  </a>
-                </div>
+      {/* Header Section */}
+      <div
+        className="relative h-60 md:h-80 bg-cover bg-center flex items-center justify-center text-white"
+        style={{
+          backgroundImage: `url("https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1350&q=80")`,
+          backgroundBlendMode: "overlay",
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-black to-main opacity-60"></div>
+        <h1 className="text-4xl md:text-5xl font-bold z-10">Projects</h1>
+      </div>
+
+      {/* Project Cards */}
+      <div className="p-6 md:p-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {Array.isArray(projects) && projects.length > 0 ? (
+          projects.map((project) => (
+            <div
+              key={project._id}
+              className="bg-white rounded-xl shadow-md hover:shadow-lg overflow-hidden transition-all"
+            >
+              <img
+                src={project.image}
+                alt={project.title}
+                className="h-48 w-full object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
+                <p className="text-gray-600 text-sm mb-2">
+                  {project.technologies}
+                </p>
+                <Link
+                  to={project.link || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-white bg-main px-4 py-2 rounded hover:bg-purple-700"
+                >
+                  Visit Project
+                </Link>
               </div>
-            ))
-          )}
-        </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center col-span-3 text-gray-500">
+            No projects available.
+          </p>
+        )}
       </div>
     </>
   );

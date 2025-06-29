@@ -8,8 +8,8 @@ function AppContextProvider({ children }) {
   const [authLoading, setAuthLoading] = useState(true);
 //   const [loadingUser, setLoadingUser] = useState(true);
   console.log(userAuth)
-  const BACKEND_URL = "http://localhost:3000/api";
-//   const BACKEND_URL = "";
+  // const BACKEND_URL = "http://localhost:3000/api";
+  const BACKEND_URL = "https://nurray-server.onrender.com/api";
 
 
 useEffect(() => {
