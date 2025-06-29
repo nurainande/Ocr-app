@@ -6,7 +6,6 @@ const AppContext = createContext();
 function AppContextProvider({ children }) {
   const [userAuth, setUserAuth] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
-//   const [loadingUser, setLoadingUser] = useState(true);
   console.log(userAuth)
   // const BACKEND_URL = "http://localhost:3000/api";
   const BACKEND_URL = "https://nurray-server.onrender.com/api";
@@ -31,20 +30,6 @@ useEffect(() => {
 
   fetchUser();
 }, []);
-
-
-// useEffect(() => {
-//   const fetchUser = async () => {
-//     const user = await getLoggedInUser(BACKEND_URL);
-//     if (user) {
-//       console.log('user',user)
-//       setUserAuth(user);
-//     }
-//     // setLoadingUser(false);
-//   };
-
-//   fetchUser();
-// }, []);
 
 
 

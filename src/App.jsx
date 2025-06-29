@@ -1,9 +1,17 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
+
 import Projects from "./pages/Projects";
+import ProjectsTest2 from "./pages/ProjectsTest2";
+
+
 import Products from "./pages/Products";
+
+import Blogs from "./pages/Blogs";
 import BlogsTest from "./pages/BlogsTest";
+import BlogsTest2 from "./pages/BlogsTest2";
+
 // import Blogs from "./pages/Blogs";
 import AdminLayout from "./pages/admin/AdminLayout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -18,7 +26,7 @@ import { useAppContext } from "./context/AppContextProvider";
 import SingleBlog from "./pages/SingleBlog";
 import AddProject from "./pages/admin/AddProject";
 import ProtectedRoute from "./utils/ProtectedRoute";
-import Blogs from "./pages/Blogs";
+
 
 function App() {
   const {BACKEND_URL} = useAppContext()
@@ -28,9 +36,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects" element={<ProjectsTest2 />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs" element={<BlogsTest2 />} />
         {/* <Route path="/blogs" element={<BlogsTest />} /> */}
         <Route path="/blog/:id" element={<SingleBlog />} />
         <Route
