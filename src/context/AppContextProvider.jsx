@@ -4,10 +4,12 @@ const AppContext = createContext();
 
 function AppContextProvider({ children }) {
   const [userAuth, setUserAuth] = useState(null);
-  const [openResultPage, setOpenResultPage] = useState(false);
+  // const [openResultPage, setOpenResultPage] = useState(false);
+  const [extractedText, setExtractedText] = useState("");
+  
   return (
     <AppContext.Provider
-      value={{ userAuth, setUserAuth, openResultPage, setOpenResultPage }}
+      value={{ userAuth, setUserAuth, extractedText, setExtractedText }}
     >
       {children}
     </AppContext.Provider>

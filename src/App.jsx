@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Result from "./pages/Result";
+import Loading from "./components/Loading";
 
 
 function App() { 
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/result" element={<Result />} />
+        <Route path="/loading" element={<Loading />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
