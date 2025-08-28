@@ -12,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/result" element={<Result />} />
-        <Route path="/loading" element={<Loading />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaCamera, FaHistory, FaUser, FaTimes, FaBalanceScale, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+import TopNav from "../components/TopNav";
 import ButtomNav from "../components/ButtomNav";
 import Tesseract from "tesseract.js";
 import { useAppContext } from "../context/AppContextProvider";
@@ -56,6 +56,17 @@ export default function Home() {
       matched: false,
       reasonNotMatched: "Ingredients mismatch",
     },
+    {
+      id: 4,
+      title: "Elim",
+      date: "2025-08-22",
+      databaseImg:
+        "https://images.squarespace-cdn.com/content/v1/64cad9ec789ea73ddbef4cb8/1f169ce3-83ca-4ae4-89f1-2b6fb8fdfefa/832e664a25e90ba33c089514ec9a24be.JPG",
+      scannedImg:
+        "https://i0.wp.com/nextcashandcarry.com.ng/wp-content/uploads/2022/06/Elim-Water-600x600-1.png?fit=600%2C600&ssl=1",
+      matched: false,
+      reasonNotMatched: "Ingredients mismatch",
+    },
   ];
 
   // ----------- Capture Image Function ------------
@@ -92,12 +103,12 @@ export default function Home() {
       }
     }, [capturedImage]);
 
-    if (loading) return <Loading text="Processing Image..." />;
+  if (loading) return <Loading text="Processing Image..." />;
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <Header />
+      {/* <TopNav /> */}
 
       {/* Main Content */}
       <main className="flex-1 p-4 space-y-4">
@@ -126,7 +137,7 @@ export default function Home() {
             <FaHistory className="text-3xl text-gray-600" />
           </div>
 
-          {/* History List */}
+          
           <div className="space-y-3">
             {historyData.map((item) => (
               <div
@@ -226,7 +237,6 @@ export default function Home() {
       {compareModal && selectedHistory && (
         <div className="fixed inset-x-0 bottom-0 bg-white rounded-t-2xl shadow-lg p-6 z-50">
           <div className="flex justify-end items-center mb-4">
-            {/* <h2 className="text-lg font-semibold">Compare Images</h2> */}
             <button
               onClick={() => setCompareModal(false)}
               className="text-gray-500 hover:text-gray-700"
