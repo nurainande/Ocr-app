@@ -2,11 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { FaCamera, FaHistory, FaUser, FaTimes, FaBalanceScale, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import Webcam from "react-webcam";
 import { useNavigate } from "react-router-dom";
-import TopNav from "../components/TopNav";
-import ButtomNav from "../components/ButtomNav";
+import TopNav from "../../components/TopNav";
+import ButtomNav from "../../components/ButtomNav";
 import Tesseract from "tesseract.js";
-import { useAppContext } from "../context/AppContextProvider";
-import Loading from "../components/Loading";
+import { useAppContext } from "../../context/AppContextProvider";
+import Loading from "../../components/Loading";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,7 +14,6 @@ export default function Home() {
   const [compareModal, setCompareModal] = useState(false);
   const [selectedHistory, setSelectedHistory] = useState(null);
 
-  // moved from Result.jsx
   const {setExtractedText} = useAppContext();
   const [loading, setLoading] = useState(false);
 
@@ -56,17 +55,7 @@ export default function Home() {
       matched: false,
       reasonNotMatched: "Ingredients mismatch",
     },
-    {
-      id: 4,
-      title: "Elim",
-      date: "2025-08-22",
-      databaseImg:
-        "https://images.squarespace-cdn.com/content/v1/64cad9ec789ea73ddbef4cb8/1f169ce3-83ca-4ae4-89f1-2b6fb8fdfefa/832e664a25e90ba33c089514ec9a24be.JPG",
-      scannedImg:
-        "https://i0.wp.com/nextcashandcarry.com.ng/wp-content/uploads/2022/06/Elim-Water-600x600-1.png?fit=600%2C600&ssl=1",
-      matched: false,
-      reasonNotMatched: "Ingredients mismatch",
-    },
+    
   ];
 
   // ----------- Capture Image Function ------------
@@ -86,7 +75,8 @@ export default function Home() {
       if (capturedImage) {
         setLoading(true);
         Tesseract.recognize(capturedImage, "eng", {
-          logger: (m) => console.log(m), // logs progress in console
+          // logs progress in console
+          logger: (m) => console.log(m),
         })
           .then(({ data: { text } }) => {
             setTimeout(() => {
@@ -94,7 +84,6 @@ export default function Home() {
               // wait for 3 seconds before setting loading to false
               setLoading(false);
             }, 3000);
-
           })
           .catch((err) => {
             console.error("OCR Error:", err);
@@ -108,10 +97,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      {/* <TopNav /> */}
+      <TopNav />
 
-      {/* Main Content */}
-      <main className="flex-1 p-4 space-y-4">
+      {/* Main Content space-y-4 */}
+      <main className="flex-1 p-4 ">
         {/* Scan Section */}
         <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
           <FaCamera className="text-4xl text-indigo-500 mb-2" />
@@ -128,7 +117,7 @@ export default function Home() {
         </div>
 
         {/* History Section */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="bg-white rounded-2xl shadow-md p-6 mt-4 mb-10 ">
           <div className="flex items-center justify-between mb-3">
             <div>
               <h2 className="text-lg font-medium">History</h2>

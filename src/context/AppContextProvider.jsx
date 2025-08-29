@@ -4,7 +4,6 @@ const AppContext = createContext();
 
 function AppContextProvider({ children }) {
   const [userAuth, setUserAuth] = useState(null);
-  // const [openResultPage, setOpenResultPage] = useState(false);
   const [extractedText, setExtractedText] = useState("");
   
   return (

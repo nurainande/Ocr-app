@@ -5,7 +5,7 @@ import {
   FaExclamationTriangle,
   FaCheckCircle,
 } from "react-icons/fa";
-import { useAppContext } from "../context/AppContextProvider";
+import { useAppContext } from "../../context/AppContextProvider";
 
 const Result = () => {
   const location = useLocation();

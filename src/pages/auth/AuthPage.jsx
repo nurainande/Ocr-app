@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../context/AppContextProvider";
+import { useAppContext } from "../../context/AppContextProvider";
 import { getLoggedInUser } from "../utils/getLoggedInUser";
 
 const AuthPage = () => {
-  const {BACKEND_URL,setUserAuth}= useAppContext()
+  const {setUserAuth}= useAppContext()
+  const BACKEND_URL= 'https://'
   const [isLogin, setIsLogin] = useState(true);
   const [form, setForm] = useState({
     fullName: "",

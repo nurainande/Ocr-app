@@ -8,11 +8,11 @@ const ButtomNav = () => {
             <FaHome className="text-2xl" />
             <span className="text-xs">Home</span>
         </button>
-        <button className="flex flex-col items-center text-gray-500hover:text-indigo-600">
+        <button className="flex flex-col items-center text-gray-500 hover:text-indigo-600">
             <FaCamera className="text-2xl" />
             <span className="text-xs">Scan</span>
         </button>
-        <button className="flex flex-col items-center text-gray-500hover:text-indigo-600">
+        <button className="flex flex-col items-center text-gray-500 hover:text-indigo-600">
             <FaUser className="text-2xl" />
             <span className="text-xs">Profile</span>
         </button>

@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Result from "./pages/Result";
-import Loading from "./components/Loading";
+import Home from "./pages/home/Home";
+import Login from "./pages/auth/Login";
+import Result from "./pages/result/Result";
 
-
-function App() { 
+function App() {
   return (
     <>
       <Routes>
