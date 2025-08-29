@@ -7,6 +7,8 @@ import ButtomNav from "../../components/ButtomNav";
 import Tesseract from "tesseract.js";
 import { useAppContext } from "../../context/AppContextProvider";
 import Loading from "../../components/Loading";
+import InitiateScan from "../../components/InitiateScan";
+import History from "../../components/History";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -57,7 +59,6 @@ export default function Home() {
     },
     
   ];
-
   // ----------- Capture Image Function ------------
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
@@ -96,70 +97,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Header */}
+      {/* ----------Header--------- */}
       <TopNav />
-
-      {/* Main Content space-y-4 */}
+      {/* -----------Main Content space-y-4--------- */}
       <main className="flex-1 p-4 ">
-        {/* Scan Section */}
-        <div className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center">
-          <FaCamera className="text-4xl text-indigo-500 mb-2" />
-          <h2 className="text-lg font-medium mb-2">Scan Product</h2>
-          <p className="text-sm text-gray-500 text-center mb-4">
-            Capture a Product using your phone’s camera to extract text.
-          </p>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-indigo-500 text-white px-6 py-2 rounded-xl shadow hover:bg-indigo-600 transition w-full"
-          >
-            Start Scanning
-          </button>
-        </div>
-
+        <InitiateScan setIsModalOpen={setIsModalOpen} />
         {/* History Section */}
-        <div className="bg-white rounded-2xl shadow-md p-6 mt-4 mb-10 ">
-          <div className="flex items-center justify-between mb-3">
-            <div>
-              <h2 className="text-lg font-medium">History</h2>
-              <p className="text-sm text-gray-500">View your past scans</p>
-            </div>
-            <FaHistory className="text-3xl text-gray-600" />
-          </div>
-
-          
-          <div className="space-y-3">
-            {historyData.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center justify-between border p-3 rounded-lg shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <img
-                    src={item.databaseImg}
-                    alt={item.title}
-                    className="w-12 h-12 rounded-lg object-cover"
-                  />
-                  <div>
-                    <h3 className="text-sm font-semibold">{item.title}</h3>
-                    <p className="text-xs text-gray-500">{item.date}</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    setSelectedHistory(item);
-                    setCompareModal(true);
-                  }}
-                  className="flex items-center gap-1 px-3 py-1 bg-indigo-500 text-white text-xs rounded-lg shadow hover:bg-indigo-600 transition"
-                >
-                  <FaBalanceScale /> View
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
+        <History historyData={historyData} setSelectedHistory={setSelectedHistory} setCompareModal={setCompareModal}/>
       </main>
-
-      {/* Bottom Navigation */}
+      {/* -----------Bottom Navigation---------- */}
       <ButtomNav />
 
       {/* Modal with Camera */}

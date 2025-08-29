@@ -5,6 +5,8 @@ const AppContext = createContext();
 function AppContextProvider({ children }) {
   const [userAuth, setUserAuth] = useState(null);
   const [extractedText, setExtractedText] = useState("");
+
+  
   
   return (
     <AppContext.Provider
