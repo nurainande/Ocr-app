@@ -1,30 +1,20 @@
-import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "../../context/AppContextProvider";
+// import { useAppContext } from "../../context/AppContextProvider";
 import History from "../../components/History";
+import BackButton from "../../components/ui/BackButton";
 
 const HistoryPage = () => {
-  const navigate = useNavigate();
-  const { historyData, setSelectedHistory, setCompareModal } = useAppContext();
+  // const { historyData, setSelectedHistory, setCompareModal } = useAppContext();
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-secondary-50">
       {/* Header with Back button */}
-      <div className="relative bg-white shadow p-4">
-        <button
-          onClick={() => navigate("/")}
-          className="absolute top-4 left-4 text-gray-600 hover:text-gray-900"
-        >
-          <FaArrowLeft size={22} />
-        </button>
+      <div className="relative bg-light shadow p-4">
+        <BackButton />
         <h1 className="text-xl font-semibold text-center">History</h1>
       </div>
       <History
-        historyData={historyData}
-        setSelectedHistory={setSelectedHistory}
-        setCompareModal={setCompareModal}
       />
     </div>
   );
-}
+};
 
-export default HistoryPage
+export default HistoryPage;

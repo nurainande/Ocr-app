@@ -1,7 +1,7 @@
 // src/components/Login.jsx  //LOGIN PAGE FOR THE ATTENDANT TO LOG IN, IMMEDIATELY THE LOGIN IS SUCCESSFUL, THEY ARE REDIRECTED TO THE DASHBOARD PAGE WHERE THEY CAN CLICK FOR MODALS TO APPEAR FOR VARIOUS ACTIONS
 import { useState } from "react";
 
-export default function Login() {
+export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,19 +9,20 @@ export default function Login() {
     e.preventDefault();
     // Call backend login API here
     console.log({ email, password });
+    props.showModal("success", "✅ Login successful!");
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-lg">
-        <h2 className="mb-6 text-center text-2xl font-bold text-gray-800">
+    <div className="flex min-h-screen items-center justify-center bg-secondary-100 p-4">
+      <div className="w-full max-w-sm rounded-2xl bg-light p-6 shadow-lg">
+        <h2 className="mb-6 text-center text-2xl font-bold text-secondary-800">
           Warehouse Login
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-secondary-700">
               Email
             </label>
             <input
@@ -29,14 +30,14 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200"
+              className="mt-1 w-full rounded-xl border border-main px-3 py-2 text-sm shadow-sm focus:border-main focus:ring focus:ring-primary-200"
               placeholder="you@example.com"
             />
           </div>
 
           {/* Password Input */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-secondary-700">
               Password
             </label>
             <input
@@ -44,7 +45,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-600 focus:ring focus:ring-blue-200"
+              className="mt-1 w-full rounded-xl border border-primary-100 px-3 py-2 text-sm shadow-sm focus:border-main focus:ring focus:ring-primary-200"
               placeholder="••••••••"
             />
           </div>
@@ -52,7 +53,7 @@ export default function Login() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full rounded-xl bg-blue-600 px-4 py-2 text-white font-semibold shadow-md transition hover:bg-blue-700 focus:ring focus:ring-blue-300"
+            className="w-full rounded-xl bg-primary-100 px-4 py-2 text-light font-semibold shadow-md transition hover:bg-main focus:ring focus:ring-main"
           >
             Sign In
           </button>
