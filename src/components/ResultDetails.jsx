@@ -9,24 +9,24 @@ const ResultDetails = () => {
               <div className="space-y-3">
                 {/* Mismatch Detected */}
                 <div className="flex items-center space-x-3 bg-danger-50 border border-danger-200 p-3 rounded-lg">
-                  <FaExclamationTriangle className="text-danger-500 text-xl" />
-                  <p className="text-danger-700 font-medium">
+                  <FaExclamationTriangle className="text-error-lighter text-xl" />
+                  <p className="text-error-light font-medium">
                     Mismatch detected between product texts.
                   </p>
                 </div>
     
                 {/* Error in Wording */}
-                <div className="flex items-center space-x-3 bg-pawpaw-50 border border-pawpaw-200 p-3 rounded-lg">
+                {/* <div className="flex items-center space-x-3 bg-pawpaw-50 border border-pawpaw-200 p-3 rounded-lg">
                   <FaExclamationTriangle className="text-pawpaw-500 text-xl" />
                   <p className="text-pawpaw-700 font-medium">
                     Potential error in wording found.
                   </p>
-                </div>
+                </div> */}
     
                 {/* Success Indicator */}
-                <div className="flex items-center space-x-3 bg-success-50 border border-success-200 p-3 rounded-lg">
-                  <FaCheckCircle className="text-success-500 text-xl" />
-                  <p className="text-success-700 font-medium">
+                <div className="flex items-center space-x-3 bg-success border border-success-200 p-3 rounded-lg">
+                  <FaCheckCircle className="text-success text-xl" />
+                  <p className="text-success-light font-medium">
                     Scan Completed Successfully
                   </p>
                 </div>

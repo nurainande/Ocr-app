@@ -13,7 +13,7 @@ const InitiateScan = () => {
   const [cameraStatus, setCameraStatus] = useState("checking");
   // "checking", "ready", "no-camera", "permission-denied", "low-light"
 
-  const { ExtractedText, setExtractedText } = useAppContext();
+  const { setExtractedText } = useAppContext();
 
   const navigate = useNavigate();
   const webcamRef = useRef(null);
@@ -78,14 +78,14 @@ const InitiateScan = () => {
 
   return (
     <div className="bg-light rounded-2xl shadow-md p-6 flex flex-col items-center">
-      <FaCamera className="text-4xl text-primary-100 mb-2" />
-      <h2 className="text-lg font-medium mb-2">Scan Product</h2>
-      <p className="text-sm text-secondary-500 text-center mb-4">
+      <FaCamera className="text-4xl text-primary mb-2" />
+      <h2 className="text-lg head mb-2">Scan Product</h2>
+      <p className="text-sm text-secondary-lighter text-center mb-4">
         Capture a Product using your phone’s camera to extract text.
       </p>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-primary-100 text-white px-6 py-2 rounded-xl shadow hover:bg-primary-200 transition w-full"
+        className="bg-primary text-white px-6 py-2 rounded-xl shadow hover:bg-primary-light transition w-full"
       >
         Start Scanning
       </button>
@@ -97,7 +97,7 @@ const InitiateScan = () => {
             {/* Close button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-3 right-3 text-secondary-500 hover:text-secondary-700"
+              className="absolute top-3 right-3 text-secondary-lighter hover:text-secondary-light"
             >
               <FaTimes className="text-xl" />
             </button>
@@ -106,20 +106,20 @@ const InitiateScan = () => {
 
             {/* Camera states */}
             {cameraStatus === "checking" && (
-              <p className="text-gray-600 text-center">Checking camera...</p>
+              <p className="text-secondary-light text-center">Checking camera...</p>
             )}
             {cameraStatus === "no-camera" && (
-              <p className="text-red-600 font-medium text-center">
+              <p className="text-error-light font-medium text-center">
                 ❌ No camera found
               </p>
             )}
             {cameraStatus === "permission-denied" && (
-              <p className="text-red-600 font-medium text-center">
+              <p className="text-error-light font-medium text-center">
                 🚫 Camera permissions denied
               </p>
             )}
             {cameraStatus === "low-light" && (
-              <p className="text-yellow-600 font-medium text-center">
+              <p className="text-pawpaw-600 font-medium text-center">
                 ⚠️ Low light detected, results may be less accurate
               </p>
             )}
@@ -148,14 +148,14 @@ const InitiateScan = () => {
                 <>
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="px-3 py-1 bg-secondary-400 text-light rounded-md"
+                    className="px-3 py-1 bg-secondary-lighter text-light rounded-md"
                   >
                     Cancel
                   </button>
                   {cameraStatus === "ready" && (
                     <button
                       onClick={handleCapture}
-                      className="px-3 py-1 bg-primary-100 text-light rounded-md"
+                      className="px-3 py-1 bg-primary text-light rounded-md"
                     >
                       Capture
                     </button>
@@ -164,7 +164,7 @@ const InitiateScan = () => {
               ) : (
                 <button
                   onClick={() => setCapturedImage(null)}
-                  className="w-full py-2 bg-primary-200 text-light rounded-md"
+                  className="w-full py-2 bg-primary-light text-light rounded-md"
                 >
                   Retake
                 </button>

@@ -16,9 +16,9 @@ const History = () => {
         <div className="flex items-center justify-between mb-3">
           <div>
             <h2 className="text-lg font-medium">History</h2>
-            <p className="text-sm text-secondary-500">View your past scans</p>
+            <p className="text-sm text-secondary-lighter">View your past scans</p>
           </div>
-          <FaHistory className="text-3xl text-secondary-600" />
+          <FaHistory className="text-3xl text-secondary-light" />
         </div>
     
               
@@ -36,7 +36,7 @@ const History = () => {
                 />
                 <div>
                   <h3 className="text-sm font-semibold">{item.title}</h3>
-                  <p className="text-xs text-secondary-500">{item.date}</p>
+                  <p className="text-xs text-secondary-light">{item.date}</p>
                 </div>
               </div>
               <button
@@ -44,13 +44,13 @@ const History = () => {
                   setSelectedHistory(item);
                   setCompareModal(true);
                 }}
-                className="flex items-center gap-1 px-3 py-1 bg-primary-1text-light text-xs rounded-lg shadow hover:bg-primary-2transition"
+                className="flex items-center gap-1 px-3 py-1 bg-primary text-light text-xs rounded-lg shadow hover:bg-primary-light transition"
               >
                 <FaBalanceScale /> View
               </button>
             </div>
           )):(
-            <p className="text-sm text-secondary-500">No history available.</p>
+            <p className="text-sm text-secondary-lighter">No history available.</p>
           )}
         </div>
         {/* Compare Modal (Bottom Sheet) */}
@@ -59,7 +59,7 @@ const History = () => {
                   <div className="flex justify-end items-center mb-4">
                     <button
                       onClick={() => setCompareModal(false)}
-                      className="text-secondary-500 hover:text-secondary-700"
+                      className="text-secondary-lighter hover:text-secondary-700"
                     >
                       <FaTimes className="text-xl" />
                     </button>

@@ -11,7 +11,7 @@ const Result = () => {
   const { extractedText } = useAppContext();
 
   return (
-    <div className="min-h-screen flex flex-col bg-secondary-50">
+    <div className="min-h-screen flex flex-col bg-secondary">
       <div className="relative bg-light shadow p-4">
         <BackButton />
         <h1 className="text-xl font-semibold text-center">Scan Result</h1>
@@ -19,8 +19,8 @@ const Result = () => {
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
-        <CompareResult capturedImage={capturedImage}/> //compare result component
-        <ResultDetails /> //result details component
+        <CompareResult capturedImage={capturedImage}/> 
+        <ResultDetails />   
         <ResultExtractedText extractedText={extractedText} />
       </div>
     </div>

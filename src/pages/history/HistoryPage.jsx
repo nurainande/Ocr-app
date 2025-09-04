@@ -5,7 +5,7 @@ import BackButton from "../../components/ui/BackButton";
 const HistoryPage = () => {
   // const { historyData, setSelectedHistory, setCompareModal } = useAppContext();
   return (
-    <div className="min-h-screen flex flex-col bg-secondary-50">
+    <div className="min-h-screen flex flex-col bg-secondary">
       {/* Header with Back button */}
       <div className="relative bg-light shadow p-4">
         <BackButton />

@@ -6,7 +6,7 @@ const BackButton = () => {
   return (
    <button
        onClick={() => navigate("/")}
-       className="absolute top-4 left-4 text-gray-600 hover:text-gray-900"
+       className="absolute top-4 left-4 text-secondary-600 hover:text-secondary-light"
    >
        <FaArrowLeft size={22} />
    </button>

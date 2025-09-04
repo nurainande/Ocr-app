@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .heading {
+    @apply text-2xl font-bold text-gray-900;
+  }
+  .subheading {
+    @apply text-lg font-semibold text-gray-700;
+  }
+  .body-text {
+    @apply text-base text-gray-600;
+  }
+  .head{
+    @apply font-medium
+  }
+}
+
 body {
   font-family: 'Poppins', sans-serif;
 } 
