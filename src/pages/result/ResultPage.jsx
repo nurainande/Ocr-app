@@ -14,7 +14,7 @@ const Result = () => {
     <div className="min-h-screen flex flex-col bg-secondary">
       <div className="relative bg-light shadow p-4">
         <BackButton />
-        <h1 className="text-xl font-semibold text-center">Scan Result</h1>
+        <h1 className="page-subtitle text-center">Scan Result</h1>
       </div>
 
       {/* Main Content */}

@@ -10,7 +10,7 @@ const ResultDetails = () => {
                 {/* Mismatch Detected */}
                 <div className="flex items-center space-x-3 bg-danger-50 border border-danger-200 p-3 rounded-lg">
                   <FaExclamationTriangle className="text-error-lighter text-xl" />
-                  <p className="text-error-light font-medium">
+                  <p className="text-error-light h3-medium">
                     Mismatch detected between product texts.
                   </p>
                 </div>
@@ -26,7 +26,7 @@ const ResultDetails = () => {
                 {/* Success Indicator */}
                 <div className="flex items-center space-x-3 bg-success border border-success-200 p-3 rounded-lg">
                   <FaCheckCircle className="text-success text-xl" />
-                  <p className="text-success-light font-medium">
+                  <p className="text-success-light h3-medium">
                     Scan Completed Successfully
                   </p>
                 </div>

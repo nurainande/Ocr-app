@@ -3,18 +3,40 @@
 @tailwind utilities;
 
 @layer components {
+  .logo-heading{
+    @apply text-xl font-semibold;
+  }
+  .action-heading {
+    @apply text-lg font-medium;
+  }
+  .info-heading {
+    @apply text-sm font-medium;
+  }
+  .action-button {
+    @apply bg-primary hover:bg-primary-light text-light;
+  }
+  .camera-error{
+    @apply text-error-light font-medium text-center;
+  }
+  .page-title {
+    @apply text-lg font-medium;
+  }
+  .page-subtitle {
+    @apply text-xl font-semibold;
+  }
+  .history-title {
+    @apply text-sm font-semibold;
+  }
+  .history-date {
+    @apply text-xs text-secondary-light;
+  }
   .heading {
     @apply text-2xl font-bold text-gray-900;
   }
-  .subheading {
-    @apply text-lg font-semibold text-gray-700;
+  h3-medium {
+    @apply font-medium;
   }
-  .body-text {
-    @apply text-base text-gray-600;
-  }
-  .head{
-    @apply font-medium
-  }
+  
 }
 
 body {

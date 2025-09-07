@@ -5,7 +5,7 @@ export const CompareResult = ({capturedImage}) => {
     <>
       {capturedImage && (
         <div className="bg-light rounded-xl shadow p-4">
-          <h2 className="text-lg font-medium mb-4 text-center">
+          <h2 className="page-title mb-4 text-center">
             Product Comparison
           </h2>
           <div className="flex justify-center space-x-4">
@@ -17,7 +17,7 @@ export const CompareResult = ({capturedImage}) => {
                   className="h-full object-contain rounded-lg shadow"
                 />
               </div>
-              <h3 className="font-medium mt-2">Scan</h3>
+              <h3 className="h3-medium mt-2">Scan</h3>
             </div>
             <div className="w-1/2 text-center">
               <div className="h-60 flex items-center justify-center">
@@ -27,7 +27,7 @@ export const CompareResult = ({capturedImage}) => {
                   className="h-full object-contain rounded-lg shadow "
                 />
               </div>
-              <h3 className="font-medium mt-2">Database</h3>
+              <h3 className="h3-medium mt-2">Database</h3>
             </div>
           </div>
         </div>

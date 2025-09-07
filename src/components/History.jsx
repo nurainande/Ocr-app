@@ -15,10 +15,10 @@ const History = () => {
     <div className="bg-light rounded-2xl shadow-md p-6 mt-4 mb-10 ">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-lg font-medium">History</h2>
+            <h2 className="page-title">History</h2>
             <p className="text-sm text-secondary-lighter">View your past scans</p>
           </div>
-          <FaHistory className="text-3xl text-secondary-light" />
+          <FaHistory className="text-secondary-light" />
         </div>
     
               
@@ -35,8 +35,8 @@ const History = () => {
                   className="w-12 h-12 rounded-lg object-cover"
                 />
                 <div>
-                  <h3 className="text-sm font-semibold">{item.title}</h3>
-                  <p className="text-xs text-secondary-light">{item.date}</p>
+                  <h3 className="history-title">{item.title}</h3>
+                  <p className="history-date">{item.date}</p>
                 </div>
               </div>
               <button
@@ -44,7 +44,7 @@ const History = () => {
                   setSelectedHistory(item);
                   setCompareModal(true);
                 }}
-                className="flex items-center gap-1 px-3 py-1 bg-primary text-light text-xs rounded-lg shadow hover:bg-primary-light transition"
+                className="action-button flex items-center gap-1 px-3 py-1 text-xs rounded-lg shadow transition"
               >
                 <FaBalanceScale /> View
               </button>
@@ -100,7 +100,7 @@ const History = () => {
                         alt="History"
                         className="rounded-lg shadow max-h-40 mx-auto"
                       />
-                      <p className="text-sm font-medium mb-2">Database Image</p>
+                      <p className="info-heading mb-2">Database Image</p>
                     </div>
                     <div className="text-center">
                       <img
@@ -108,7 +108,7 @@ const History = () => {
                         alt="Captured"
                         className="rounded-lg shadow max-h-40 mx-auto"
                       />
-                      <p className="text-sm font-medium mb-2">Captured Image</p>
+                      <p className="info-heading mb-2">Captured Image</p>
                     </div>
                   </div>
                 </div>

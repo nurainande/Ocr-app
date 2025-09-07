@@ -9,7 +9,7 @@ const HistoryPage = () => {
       {/* Header with Back button */}
       <div className="relative bg-light shadow p-4">
         <BackButton />
-        <h1 className="text-xl font-semibold text-center">History</h1>
+        <h1 className="page-subtitle text-center">History</h1>
       </div>
       <History
       />

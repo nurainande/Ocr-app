@@ -78,14 +78,14 @@ const InitiateScan = () => {
 
   return (
     <div className="bg-light rounded-2xl shadow-md p-6 flex flex-col items-center">
-      <FaCamera className="text-4xl text-primary mb-2" />
-      <h2 className="text-lg head mb-2">Scan Product</h2>
+      <FaCamera className="text-primary mb-2 text-4xl" />
+      <h2 className="action-heading mb-2">Scan Product</h2>
       <p className="text-sm text-secondary-lighter text-center mb-4">
         Capture a Product using your phone’s camera to extract text.
       </p>
       <button
         onClick={() => setIsModalOpen(true)}
-        className="bg-primary text-white px-6 py-2 rounded-xl shadow hover:bg-primary-light transition w-full"
+        className="action-button px-6 py-2 rounded-xl shadow transition w-full"
       >
         Start Scanning
       </button>
@@ -102,24 +102,24 @@ const InitiateScan = () => {
               <FaTimes className="text-xl" />
             </button>
 
-            <h2 className="text-lg font-semibold mb-4">Capture Product</h2>
+            <h2 className="action-heading mb-4">Capture Product</h2>
 
             {/* Camera states */}
             {cameraStatus === "checking" && (
               <p className="text-secondary-light text-center">Checking camera...</p>
             )}
             {cameraStatus === "no-camera" && (
-              <p className="text-error-light font-medium text-center">
+              <p className="camera-error">
                 ❌ No camera found
               </p>
             )}
             {cameraStatus === "permission-denied" && (
-              <p className="text-error-light font-medium text-center">
+              <p className="camera-error">
                 🚫 Camera permissions denied
               </p>
             )}
             {cameraStatus === "low-light" && (
-              <p className="text-pawpaw-600 font-medium text-center">
+              <p className="camera-error">
                 ⚠️ Low light detected, results may be less accurate
               </p>
             )}
