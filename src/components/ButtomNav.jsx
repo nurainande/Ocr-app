@@ -1,21 +1,31 @@
-import React from 'react'
-import { FaCamera, FaHistory, FaUser, FaHome } from "react-icons/fa";
+import React, { useState } from 'react'
+import { FaCamera, FaUser, FaHome } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
-const ButtomNav = () => {
+const ButtomNav = ({ setIsModalOpen }) => {
+  const [active, setActive] = useState("home");
+  const navigate = useNavigate();
+
+  const navItems = [
+    { id: "home", label: "Home", icon: <FaHome className="text-2xl" />, action: () => setActive("home") },
+    { id: "scan", label: "Scan", icon: <FaCamera className="text-2xl" />, action: () => { setActive("scan"); setIsModalOpen(true); } },
+    { id: "profile", label: "Profile", icon: <FaUser className="text-2xl" />, action: () => {setActive("profile");navigate('/login') } }
+  ];
+
   return (
     <nav className="bg-light shadow-md p-3 flex justify-around fixed bottom-0 w-full">
-        <button className="flex flex-col items-center text-primary hover:text-primary-light">
-            <FaHome className="text-2xl" />
-            <span className="text-xs">Home</span>
+      {navItems.map((item) => (
+        <button
+          key={item.id}
+          onClick={item.action}
+          className={`flex flex-col items-center ${
+            active === item.id ? "text-primary" : "text-secondary-light"
+          }`}
+        >
+          {item.icon}
+          <span className="text-xs">{item.label}</span>
         </button>
-        <button className="flex flex-col items-center text-secondary-lighter hover:text-primary">
-            <FaCamera className="text-2xl" />
-            <span className="text-xs">Scan</span>
-        </button>
-        <button className="flex flex-col items-center text-secondary-lighter hover:text-primary">
-            <FaUser className="text-2xl" />
-            <span className="text-xs">Profile</span>
-        </button>
+      ))}
     </nav>
   )
 }

@@ -6,8 +6,8 @@ import Webcam from "react-webcam";
 import { useAppContext } from "../context/AppContextProvider";
 import Loading from "./ui/Loading";
 
-const InitiateScan = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const InitiateScan = ({isModalOpen,setIsModalOpen}) => {
+  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cameraStatus, setCameraStatus] = useState("checking");

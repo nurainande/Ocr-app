@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaBalanceScale, FaCheckCircle, FaHistory, FaTimes, FaTimesCircle } from 'react-icons/fa';
 import { useAppContext } from '../context/AppContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 const History = () => {
   const {
@@ -11,6 +12,7 @@ const History = () => {
     setSelectedHistory,
   } = useAppContext();
   console.log(historyData)
+  const navigate = useNavigate();
   return (
     <div className="bg-light rounded-2xl shadow-md p-6 mt-4 mb-10 ">
         <div className="flex items-center justify-between mb-3">
@@ -18,7 +20,7 @@ const History = () => {
             <h2 className="page-title">History</h2>
             <p className="text-sm text-secondary-lighter">View your past scans</p>
           </div>
-          <FaHistory className="text-secondary-light" />
+          <FaHistory className="text-secondary-light" onClick={()=>navigate('/history')}/>
         </div>
     
               
