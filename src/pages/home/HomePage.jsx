@@ -3,7 +3,7 @@ import History from "../../components/History";
 import InitiateScan from "../../components/InitiateScan";
 import TopNav from "../../components/TopNav";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-secondary flex flex-col">
       <TopNav />

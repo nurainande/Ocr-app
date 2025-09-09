@@ -18,10 +18,65 @@ const InitiateScan = () => {
   const navigate = useNavigate();
   const webcamRef = useRef(null);
 
+//   const handleCapture2 = async () => {
+//   const imageSrc = webcamRef.current.getScreenshot(); // base64 string
+//   console.log("Captured image:", imageSrc);
+//   setCapturedImage(imageSrc);
+
+//   if (imageSrc) {
+//     // setLoading(true);
+
+//     try {
+//       // Convert base64 with Blob
+//       const res = await fetch(imageSrc);
+//       const blob = await res.blob();
+
+//       // Put blob into FormData
+//       const formData = new FormData();
+//       formData.append("image", blob, "capture.png"); // field must match upload.single("image")
+
+//      setLoading(true);
+//       // Send to backend
+//       const response = await fetch("http://localhost:3000/scan", {
+//         method: "POST",
+//         body: formData,
+//       });
+
+//       const data = await response.json();
+//       console.log("API response:", data);
+
+//       // Navigate to results page with both image & backend response
+//       navigate("/result", { state: { capturedImage: imageSrc, scanResult: data } });
+//     } catch (err) {
+//       console.error("Upload error:", err);
+//     } finally {
+//       setLoading(false);
+//       setIsModalOpen(false);
+//     }
+//   }
+// };
+
+
   // ----------- Capture Image Function ------------
   const handleCapture = () => {
     const imageSrc = webcamRef.current.getScreenshot();
     setCapturedImage(imageSrc);
+
+    // TESTING----------------,COULD BE DELETED
+    if (capturedImage) {
+      setLoading(true);
+      Tesseract.recognize(capturedImage, "eng", {
+        logger: (m) => console.log(m),
+      })
+        .then(({ data: { text } }) => {
+          setExtractedText(text);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("OCR Error:", err);
+          setLoading(false);
+        });
+    }
 
     // Simulate processing delay
     setTimeout(() => {
