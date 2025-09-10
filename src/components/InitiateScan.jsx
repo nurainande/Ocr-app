@@ -6,15 +6,12 @@ import Webcam from "react-webcam";
 import { useAppContext } from "../context/AppContextProvider";
 import Loading from "./ui/Loading";
 
+// ========================= InitiateScan Component ===================
 const InitiateScan = ({isModalOpen,setIsModalOpen}) => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
   const [capturedImage, setCapturedImage] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [cameraStatus, setCameraStatus] = useState("checking");
-  // "checking", "ready", "no-camera", "permission-denied", "low-light"
-
-  const { setExtractedText } = useAppContext();
-
+  const [cameraStatus, setCameraStatus] = useState("checking"); // "checking", "ready", "no-camera", "permission-denied", "low-light"
+  const { setExtractedText } = useAppContext(); //Lets use this if we want the teseract on the client
   const navigate = useNavigate();
   const webcamRef = useRef(null);
 
@@ -76,13 +73,17 @@ const InitiateScan = ({isModalOpen,setIsModalOpen}) => {
           console.error("OCR Error:", err);
           setLoading(false);
         });
+
+    
     }
 
-    // Simulate processing delay
-    setTimeout(() => {
+    // // Simulate processing delay
+    // setTimeout(() => {
+    //   navigate("/result", { state: { capturedImage: imageSrc } });
+    //   setIsModalOpen(false);
+    // }, 3000);
       navigate("/result", { state: { capturedImage: imageSrc } });
       setIsModalOpen(false);
-    }, 3000);
   };
 
   // ----------- OCR Effect ------------
@@ -103,7 +104,7 @@ const InitiateScan = ({isModalOpen,setIsModalOpen}) => {
     }
   }, [capturedImage]);
 
-  // ----------- Camera Availability Check ------------
+  // ----------- Camera Availability Check--VERY IMPORTANT ------------
   useEffect(() => {
     if (isModalOpen) {
       navigator.mediaDevices

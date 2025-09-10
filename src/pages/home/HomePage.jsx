@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ButtomNav from "../../components/ButtomNav";
 import History from "../../components/History";
-import InitiateScan from "../../components/InitiateScan";
+import InitiateScan from "../../components/InitiateScan3";
 import TopNav from "../../components/TopNav";
 
 export default function HomePage() {
