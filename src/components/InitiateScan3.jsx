@@ -3,7 +3,7 @@ import { FaCamera, FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Tesseract from "tesseract.js";
 import Webcam from "react-webcam";
-import { useAppContext } from "../context/AppContextProvider";
+// import { useAppContext } from "../context/AppContextProvider";
 import Loading from "./ui/Loading";
 
 // ========================= InitiateScan Component ===================
@@ -11,61 +11,65 @@ const InitiateScan3 = ({ isModalOpen, setIsModalOpen }) => {
   const [capturedImage, setCapturedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cameraStatus, setCameraStatus] = useState("checking"); // "checking", "ready", "no-camera", "permission-denied"
-  const { setExtractedText } = useAppContext();
+  // const { setExtractedText } = useAppContext();
   const navigate = useNavigate();
   const webcamRef = useRef(null);
 
   // ----------- Process Image Function (OCR or Backend) ------------
-  const processImage = async (imageSrc) => {
-    setLoading(true);
+  // const processImage = async (imageSrc) => {
+  //   setLoading(true);
     
-    try {
-      // TODO: Replace this with backend API call when ready
-      // For now, we'll use Tesseract for OCR simulation
-      const { data: { text } } = await Tesseract.recognize(imageSrc, "eng", {
-        logger: (m) => console.log(m),
-      });
+  //   try {
+  //     // TODO: Replace this with backend API call when ready
+  //     // For now, we'll use Tesseract for OCR simulation
+  //     const { data: { text } } = await Tesseract.recognize(imageSrc, "eng", {
+  //       logger: (m) => console.log(m),
+  //     });
       
-      setExtractedText(text);
+  //     setExtractedText(text);
       
-      // Navigate to results with the processed data
-      navigate("/result", { 
-        state: { 
-          capturedImage: imageSrc,
-          extractedText: text 
-        } 
-      });
+  //     // Navigate to results with the processed data
+  //     navigate("/result", { 
+  //       state: { 
+  //         capturedImage: imageSrc,
+  //         extractedText: text 
+  //       } 
+  //     });
       
-    } catch (error) {
-      console.error("Processing error:", error);
-      // Handle error appropriately - maybe show an error message
-    } finally {
-      setLoading(false);
-      setIsModalOpen(false);
-    }
-  };
+  //   } catch (error) {
+  //     console.error("Processing error:", error);
+  //     // Handle error appropriately - maybe show an error message
+  //   } finally {
+  //     setLoading(false);
+  //     setIsModalOpen(false);
+  //   }
+  // };
 
-  // ----Future backend implementation would look like this
-  /*
+  // ----Future backend implementation would look like this-------
+  
   const processImageWithBackend = async (imageSrc) => {
     setLoading(true);
     
     try {
       // Convert base64 to blob
       const res = await fetch(imageSrc);
+      console.log(res)
       const blob = await res.blob();
+      console.log(blob)
 
       // Create FormData
       const formData = new FormData();
+      console.log(formData)
       formData.append("image", blob, "capture.png");
 
       // Send to backend
-      const response = await fetch("http://localhost:3000/scan", {
+      const response = await fetch("http://localhost:4000/scan", {
         method: "POST",
         body: formData,
       });
 
       const data = await response.json();
+      console.log("Backend response:", data);
       
       // Navigate with backend response
       navigate("/result", { 
@@ -82,7 +86,7 @@ const InitiateScan3 = ({ isModalOpen, setIsModalOpen }) => {
       setIsModalOpen(false);
     }
   };
-  */
+  
 
   // ----------- Capture Image Function ------------
   const handleCapture = () => {
@@ -90,7 +94,9 @@ const InitiateScan3 = ({ isModalOpen, setIsModalOpen }) => {
     if (imageSrc) {
       setCapturedImage(imageSrc);
       // Process the image immediately after capture
-      processImage(imageSrc);
+      // processImage(imageSrc);
+      // For backend processing if available, use:
+      processImageWithBackend(imageSrc);
     }
   };
 

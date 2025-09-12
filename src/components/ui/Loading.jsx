@@ -45,7 +45,6 @@
 // };
 // export default Loading1;
 
-import React from 'react';
 
 const Loading = ({ text = "Loading..." }) => {
   return (

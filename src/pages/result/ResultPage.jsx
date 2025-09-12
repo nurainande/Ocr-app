@@ -7,7 +7,7 @@ import ResultExtractedText from "../../components/ResultExtractedText";
 
 const Result = () => {
   const location = useLocation();
-  const { capturedImage } = location.state || {};
+  const { capturedImage,scanResult } = location.state || {};
   const { extractedText } = useAppContext();
 
   return (
@@ -19,8 +19,8 @@ const Result = () => {
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6">
-        <CompareResult capturedImage={capturedImage}/> 
-        <ResultDetails />   
+        <CompareResult capturedImage={capturedImage} scanResult={scanResult}/> 
+        <ResultDetails scanResult={scanResult} />   
         <ResultExtractedText extractedText={extractedText} />
       </div>
     </div>

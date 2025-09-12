@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaCamera, FaUser, FaHome } from "react-icons/fa";
+import { FaCamera, FaUser, FaHome,FaTags } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 const ButtomNav = ({ setIsModalOpen }) => {
@@ -9,7 +9,7 @@ const ButtomNav = ({ setIsModalOpen }) => {
   const navItems = [
     { id: "home", label: "Home", icon: <FaHome className="text-2xl" />, action: () => setActive("home") },
     { id: "scan", label: "Scan", icon: <FaCamera className="text-2xl" />, action: () => { setActive("scan"); setIsModalOpen(true); } },
-    { id: "profile", label: "Profile", icon: <FaUser className="text-2xl" />, action: () => {setActive("profile");navigate('/login') } }
+    { id: "products", label: "Products", icon: <FaTags className="text-2xl" />, action: () => {setActive("products");navigate('/products') } }
   ];
 
   return (

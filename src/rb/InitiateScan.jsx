@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Tesseract from "tesseract.js";
 import Webcam from "react-webcam";
 import { useAppContext } from "../context/AppContextProvider";
-import Loading from "./ui/Loading";
+import Loading from "../components/ui/Loading";
 
 // ========================= InitiateScan Component ===================
 const InitiateScan = ({isModalOpen,setIsModalOpen}) => {
