@@ -5,9 +5,11 @@ import Tesseract from "tesseract.js";
 import Webcam from "react-webcam";
 // import { useAppContext } from "../context/AppContextProvider";
 import Loading from "./ui/Loading";
+import { useAppContext } from "../context/AppContextProvider";
 
 // ========================= InitiateScan Component ===================
 const InitiateScan3 = ({ isModalOpen, setIsModalOpen }) => {
+  const {BACKEND_URL} = useAppContext();
   const [capturedImage, setCapturedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [cameraStatus, setCameraStatus] = useState("checking"); // "checking", "ready", "no-camera", "permission-denied"
@@ -55,15 +57,15 @@ const InitiateScan3 = ({ isModalOpen, setIsModalOpen }) => {
       const res = await fetch(imageSrc);
       console.log(res)
       const blob = await res.blob();
-      console.log(blob)
+      console.log(blob);
 
       // Create FormData
       const formData = new FormData();
-      console.log(formData)
+      console.log(formData);
       formData.append("image", blob, "capture.png");
 
       // Send to backend
-      const response = await fetch("http://localhost:4000/scan", {
+      const response = await fetch(`${BACKEND_URL}/scan`, {
         method: "POST",
         body: formData,
       });

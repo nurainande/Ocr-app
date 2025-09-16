@@ -1,9 +1,13 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { getLoggedInUser } from "../services/services";
 
 const AppContext = createContext();
 
 function AppContextProvider({ children }) {
+  // const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+  const BACKEND_URL = "http://localhost:4000/api";
   const [userAuth, setUserAuth] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
   const [extractedText, setExtractedText] = useState("");
 
   const [compareModal, setCompareModal] = useState(false);
@@ -46,10 +50,40 @@ function AppContextProvider({ children }) {
     },
     
   ];
+  async function logoutUser() {
+    await fetch(`${BACKEND_URL}/auth/logout`, {
+      method: "POST",
+      credentials: "include", // include cookies
+    });
+    setUserAuth(null);
+    localStorage.removeItem("userAuth");
+  }
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const user = await getLoggedInUser(`${BACKEND_URL}/auth/me`);
+        if (user && user.id) {
+          console.log("User fetched:", user);
+          setUserAuth(user); // ✅ set only if valid user
+        } else {
+          setUserAuth(null);
+        }
+      } catch (error) {
+        console.log(error);
+        setUserAuth(null);
+      } finally {
+        setAuthLoading(false); // ✅ end loading
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   
   return (
     <AppContext.Provider
       value={{
+        BACKEND_URL,
         userAuth,
         setUserAuth,
         extractedText,
@@ -59,6 +93,9 @@ function AppContextProvider({ children }) {
         setCompareModal,
         selectedHistory,
         setSelectedHistory,
+        authLoading,
+        setAuthLoading,
+        logoutUser,
       }}
     >
       {children}

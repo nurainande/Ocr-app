@@ -1,33 +1,105 @@
-import React, { useState } from 'react'
-import { FaCamera, FaUser, FaHome,FaTags } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+// import React, { useState } from 'react'
+// import { FaCamera, FaUser, FaHome,FaTags } from "react-icons/fa";
+// import { useNavigate } from 'react-router-dom';
+// import { useAppContext } from '../context/AppContextProvider';
+
+// const ButtomNav = ({ setIsModalOpen }) => {
+//   const {userAuth} = useAppContext();
+//   const [active, setActive] = useState("home");
+//   const navigate = useNavigate();
+
+//   const navItems = [
+//     { id: "home", label: "Home", icon: <FaHome className="text-2xl" />, action: () => setActive("home") },
+//     { id: "scan", label: "Scan", icon: <FaCamera className="text-2xl" />, action: () => { setActive("scan"); setIsModalOpen(true); } },
+//     { id: "products", label: "Products", icon: <FaTags className="text-2xl" />, action: () => {setActive("products");navigate('/products') } }
+//   ];
+
+//   return (
+//     <nav className="bg-light shadow-md p-3 flex justify-around fixed bottom-0 w-full">
+//       {navItems.map((item) => (
+//         <button
+//           key={item.id}
+//           onClick={item.action}
+//           className={`flex flex-col items-center ${
+//             active === item.id ? "text-primary" : "text-secondary-light"
+//           }`}
+//         >
+//           {item.icon}
+//           <span className="text-xs">{item.label}</span>
+//         </button>
+//       ))}
+//     </nav>
+//   )
+// }
+
+// export default ButtomNav
+
+
+import React, { useState } from "react";
+import { FaCamera, FaUser, FaHome, FaTags } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContextProvider";
 
 const ButtomNav = ({ setIsModalOpen }) => {
+  const { userAuth } = useAppContext();
   const [active, setActive] = useState("home");
   const navigate = useNavigate();
 
   const navItems = [
-    { id: "home", label: "Home", icon: <FaHome className="text-2xl" />, action: () => setActive("home") },
-    { id: "scan", label: "Scan", icon: <FaCamera className="text-2xl" />, action: () => { setActive("scan"); setIsModalOpen(true); } },
-    { id: "products", label: "Products", icon: <FaTags className="text-2xl" />, action: () => {setActive("products");navigate('/products') } }
+    { 
+      id: "home", 
+      label: "Home", 
+      icon: <FaHome className="text-2xl" />, 
+      action: () => setActive("home") 
+    },
+    { 
+      id: "scan", 
+      label: "Scan", 
+      icon: <FaCamera className="text-2xl" />, 
+      action: () => { 
+        setActive("scan"); 
+        setIsModalOpen(true); 
+      } 
+    },
+    { 
+      id: "products", 
+      label: "Products", 
+      icon: <FaTags className="text-2xl" />, 
+      action: () => { 
+        if (userAuth?.role === "admin") { 
+          setActive("products"); 
+          navigate("/products"); 
+        } 
+      }, 
+      requiresAdmin: true 
+    }
   ];
 
   return (
     <nav className="bg-light shadow-md p-3 flex justify-around fixed bottom-0 w-full">
-      {navItems.map((item) => (
-        <button
-          key={item.id}
-          onClick={item.action}
-          className={`flex flex-col items-center ${
-            active === item.id ? "text-primary" : "text-secondary-light"
-          }`}
-        >
-          {item.icon}
-          <span className="text-xs">{item.label}</span>
-        </button>
-      ))}
-    </nav>
-  )
-}
+      {navItems.map((item) => {
+        const isActive = active === item.id;
+        const isDisabled = item.requiresAdmin && userAuth?.role !== "admin";
 
-export default ButtomNav
+        return (
+          <button
+            key={item.id}
+            onClick={isDisabled ? undefined : item.action}
+            className={`flex flex-col items-center ${
+              isDisabled
+                ? "text-gray-400 opacity-50 cursor-not-allowed"
+                : isActive
+                ? "text-primary"
+                : "text-secondary-light hover:text-primary"
+            }`}
+          >
+            {item.icon}
+            <span className="text-xs">{item.label}</span>
+          </button>
+        );
+      })}
+    </nav>
+  );
+};
+
+export default ButtomNav;
