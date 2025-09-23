@@ -12,7 +12,7 @@ export default function HomePage() {
       <TopNav />
       <main className="flex-1 p-4 md:w-4/5 lg:w-3/5 mx-auto w-full space-y-4">
         <InitiateScan isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
-        <History />
+        <History limit={3} />
       </main>
       <ButtomNav isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>

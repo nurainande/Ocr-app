@@ -36,7 +36,7 @@
 
 
 import React, { useState } from "react";
-import { FaCamera, FaUser, FaHome, FaTags } from "react-icons/fa";
+import { FaCamera, FaUser, FaHome, FaTags,FaHistory } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContextProvider";
 
@@ -53,12 +53,13 @@ const ButtomNav = ({ setIsModalOpen }) => {
       action: () => setActive("home") 
     },
     { 
-      id: "scan", 
-      label: "Scan", 
-      icon: <FaCamera className="text-2xl" />, 
+      id: "History", 
+      label: "History", 
+      icon: <FaHistory className="text-2xl" />, 
       action: () => { 
-        setActive("scan"); 
-        setIsModalOpen(true); 
+        setActive("history"); 
+        // setIsModalOpen(true); 
+        navigate('/history')
       } 
     },
     { 
