@@ -96,9 +96,17 @@ const handleUploadImage = (e) => {
 
 
     try {
-      await axios.post("http://localhost:4000/api/products", form, {
-        headers: { "Content-Type": "application/json" },
-      });
+      // await axios.post("http://localhost:4000/api/products", form, {
+      //   headers: { "Content-Type": "application/json" },
+      // });
+      await axios.post(
+  "http://localhost:4000/api/products",
+  form,
+  {
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true, // ✅ sends cookies along with the request
+  }
+);
 
       setMessage("✅ Product uploaded successfully!");
       // Reset form

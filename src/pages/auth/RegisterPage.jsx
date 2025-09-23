@@ -125,10 +125,10 @@ export default function Register(props) {
           {/* Already have account */}
           <div className="flex justify-center">
             <Link
-              to="/login"
+              to="/"
               className="mt-2 text-sm text-secondary-lighter hover:underline"
             >
-              Already have an account? Login
+              Back to home
             </Link>
           </div>
         </form>

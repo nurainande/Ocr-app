@@ -10,7 +10,11 @@ const ProductsList = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:4000/api/products");
+        // const res = await axios.get("http://localhost:4000/api/products");
+        const res = await axios.get("http://localhost:4000/api/products", {
+  withCredentials: true, // ✅ include cookies/session
+  headers: { "Content-Type": "application/json" },
+});
         setProducts(res.data.products);
       } catch (err) {
         console.error(err);
