@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaQuestion } from "react-icons/fa";
 
-export const CompareResult = ({capturedImage}) => {
+export const CompareResult = ({capturedImage,scanResult}) => {
   return (
     <>
       {capturedImage && (
@@ -23,12 +23,12 @@ export const CompareResult = ({capturedImage}) => {
             </div>
             <div className="w-1/2 text-center">
               <div className="h-60 flex items-center justify-center">
-                {/* <img
-                  src="https://www.supermart.ng/cdn/shop/files/spmt3315.jpg?v=1688696569"
+                {scanResult?.product?<img
+                  src={scanResult.product.reference_image_url}
                   alt="Processed"
                   className="h-full object-contain rounded-lg shadow "
-                /> */}
-                <FaQuestion size={30} color="blue" />
+                />:
+                <FaQuestion size={30} color="blue" />}
               </div>
               <h3 className="h3-medium mt-2">Database</h3>
             </div>

@@ -127,7 +127,7 @@ const ResultDetails = ({ scanResult }) => {
           <div className="flex items-center space-x-3 bg-success border border-success-200 p-3 rounded-lg">
             <FaCheckCircle className="text-success text-xl" />
             <p className="text-success-light h3-medium">
-              Scan Completed Successfully - Product Match Found
+              Scan Completed Successfully - Product Match Found {scanResult.product ? `(${scanResult.product.name})` : ''}
             </p>
           </div>
         )}
@@ -163,6 +163,21 @@ const ResultDetails = ({ scanResult }) => {
                 </span>
               </div>
             )}
+          </div>
+          {/* i want to create an extra ui here to make display all the text details about the scan result */}
+          <div className="mt-3 text-sm text-gray-500 italic">
+            <i>Note: A match score above 80% generally indicates a strong match. Below are the details of the product matched:</i>
+            <div className="mt-2">
+              {scanResult.product ? (
+                <>
+                  <p><span className="font-medium text-gray-800">Product Name:</span> {scanResult.product.name}</p>
+                  <p><span className="font-medium text-gray-800">Barcode:</span> {scanResult.product.barcode || 'N/A'}</p>
+                  <p><span className="font-medium text-gray-800">Expected Verbiage:</span> {scanResult.product.expected_verbage || 'N/A'}</p>
+                </>
+              ) : (
+                <p className="text-error-light">No matching product found in the database.</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
