@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/AppContextProvider";
 import { getLoggedInUser } from "../../services/services";
 
 export default function Login(props) {
-    const { setUserAuth } = useAppContext();
+  const { setUserAuth,BACKEND_URL } = useAppContext();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -19,12 +19,12 @@ export default function Login(props) {
     setLoading(true);
     // Call backend login API here
     try {
-      const result = await axios.post('http://localhost:4000/api/auth/login', { username, password }, {
+      const result = await axios.post(`${BACKEND_URL}/auth/login`, { username, password }, {
             withCredentials: true,
         });
         console.log("RESULT",result)
         props.showModal("success", "✅ Login successful!");
-        const user = await getLoggedInUser('http://localhost:4000/api/auth/me');
+        const user = await getLoggedInUser(`${BACKEND_URL}/auth/me`);
         navigate("/")
         setUserAuth(user);
         setUsername("");

@@ -4,8 +4,10 @@ import axios from "axios";
 import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useAppContext } from "../../context/AppContextProvider";
 
 export default function Register(props) {
+   const { BACKEND_URL } = useAppContext();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -19,7 +21,7 @@ export default function Register(props) {
     setLoading(true);
     try {
         // Call backend register API here
-       const result = await axios.post('http://localhost:4000/api/auth/register', { name, username, password, role }, {
+       const result = await axios.post(`${BACKEND_URL}/auth/register`, { name, username, password, role }, {
             withCredentials: true,
         });
         console.log(result)

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAppContext } from "../../context/AppContextProvider";
 
 const ProductsList = () => {
+  const {BACKEND_URL} = useAppContext();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -10,8 +12,7 @@ const ProductsList = () => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
-        // const res = await axios.get("http://localhost:4000/api/products");
-        const res = await axios.get("http://localhost:4000/api/products", {
+        const res = await axios.get(`${BACKEND_URL}/products`, {
   withCredentials: true, // ✅ include cookies/session
   headers: { "Content-Type": "application/json" },
 });

@@ -18,8 +18,10 @@ const uploadImage  = async(image) => {
 
 import axios from "axios";
 import React, { useState } from "react";
+import { useAppContext } from "../../context/AppContextProvider"
 
 const UploadProductForm = () => {
+  const {BACKEND_URL} = useAppContext();
   const [form, setForm] = useState({
     name: "",
     barcode: "",
@@ -96,15 +98,10 @@ const handleUploadImage = (e) => {
 
 
     try {
-      // await axios.post("http://localhost:4000/api/products", form, {
-      //   headers: { "Content-Type": "application/json" },
-      // });
-      await axios.post(
-  "http://localhost:4000/api/products",
-  form,
-  {
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true, // ✅ sends cookies along with the request
+      await axios.post(`${BACKEND_URL}/products`,
+        form,
+        {
+          headers: { "Content-Type": "application/json" },withCredentials: true, // ✅ sends cookies along with the request
   }
 );
 
